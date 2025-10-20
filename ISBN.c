@@ -34,7 +34,7 @@ int main(void)
     {
         correct_char = correct_code + '0';
     }
-    if ((correct_code == 10 && recognition == 10) || (correct_code != 10 && recognition -'0' == correct_code))
+    if ((correct_code == 10 && recognition == 10) || (correct_code != 10 && recognition  == correct_code))
     {
         printf("Right");
     }
