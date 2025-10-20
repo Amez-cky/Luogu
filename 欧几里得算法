@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int gcd(int a, int b); \\ 欧几里得算法
+
+int main(void)
+{
+    int a, b, c;
+    int temp;
+    scanf("%d %d %d", &a, &b, &c);
+    if (a > b)
+    {
+        temp = a;
+        a = b;
+        b = temp;
+    }
+    if (a > c)
+    {
+        temp = a;
+        a = c;
+        c = temp;
+    }
+    if (b > c)
+    {
+        temp = b;
+        b = c;
+        c = temp;
+    }
+    int n = gcd(c, a);
+    int A = a / n, C = c / n;
+    printf("%d/%d", A, C);
+
+    return 0;
+}
+
+int gcd(int a, int b)
+{
+    while(b != 0)
+    {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
