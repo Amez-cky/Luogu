@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int n, j = 1, m = 0;
+    scanf("%d", &n);
+    const int k = n;
+    for (int i = 1; i <= n; i++)
+    {
+        while (1)
+        {
+            if (j <= n)
+            {
+                printf("%02d", j);
+                j++;
+            }
+            else
+            {
+                break;
+            }
+        }
+        printf("\n");
+        m++;
+        n = n + k - m;
+    }
+
+    return 0;
+}
