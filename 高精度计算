@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX_LEN 200
+
+void add(int a[], int b[]);
+void multiply(int a[], int k);
+void factorial_sum(int n);
+
+int main(void)
+{
+    int n;
+    scanf ("%d", &n);
+    factorial_sum(n);
+
+    return 0;
+}
+
+//高精度加法：a = a + b
+void add(int a[], int b[])
+{
+    int carry = 0;
+    for (int i = 0; i < MAX_LEN; i++)
+    {
+        a[i] += b[i] + carry;
+        carry = a[i] / 10;
+        a[i] %= 10;
+    }
+}
+
+//高精度乘法：a = a * k
+void multiply(int a[], int k)
+{
+    int carry = 0;
+    for (int i = 0; i < MAX_LEN; i++)
+    {
+        a[i] = a[i] * k + carry;
+        carry = a[i] / 10;
+        a[i] %= 10;
+    }
+}
+
+//计算并输出 1！+ 2！+ ... + n!
+void factorial_sum(int n)
+{
+    int sum[MAX_LEN] = {0}; //存储最终和：sum = 1！+ 2！+ ... + n!
+    int fact[MAX_LEN] = {0}; //存储当前阶乘：fact = k! (k从1到n)
+    fact[0] = 1; //初始化为 1！ = 1
+    //初始化 sum 为 1！(即 fact 的初始值)
+    memcpy(sum, fact, sizeof(sum)); //详见附录1
+    //从 2！开始计算， 累加到 sum
+    for (int k = 2; k <= n; k++)
+    {
+        multiply(fact, k); //计算 k! = (k - 1)! * k
+        add(sum, fact); //将k！累加到 sum
+    }
+    //逆序输出结果（找到最高位，再从高位到低位输出）
+    int i = MAX_LEN - 1;
+    while (i > 0 && sum[i] == 0)
+    {
+        i--;
+    }
+    for (;i >= 0; i--)
+    {
+        printf("%d", sum[i]);
+    }
+    printf("\n");
+}
