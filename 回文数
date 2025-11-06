@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int N;
+    scanf("%d", &N);
+    if (N == 0)
+    {
+        printf("0");
+    }
+    else
+    {
+        int sign = (N < 0) ? -1 : 1;
+        N = (N < 0) ? -N : N;
+        int num = 0;
+        while(N > 0)
+        {
+            int last = N % 10;
+            num = num * 10 + last;
+            N = N / 10;
+        }
+        printf("%d", sign * num);
+    }
+    return 0;
+}
