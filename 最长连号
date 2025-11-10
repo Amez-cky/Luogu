@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int n;
+    scanf("%d", &n);
+    int num, temp, ture_length = 1, length = 1;
+    scanf("%d", &num);
+    for (int i = 1; i < n; i++)
+    {
+        temp = num;
+        scanf("%d", &num);
+        if (num == temp + 1)
+        {
+            length++;
+            if (ture_length <= length)
+            {
+                ture_length = length;
+            }
+        }
+        else
+        {
+            length = 1;
+        }
+    }
+    printf("%d", ture_length);
+
+    return 0;
