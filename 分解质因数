@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int primeFactorize(int num);
+
+int main(void)
+{
+    int n;
+    scanf("%d", &n);
+    int temp = 2;
+    while(1)
+    {
+        if (n % temp == 0)
+        {
+            int j = primeFactorize(temp);
+            if (j == 1)
+            {
+                printf("%d", n / temp);
+                break;
+            }
+        }
+        temp++;
+    }
+}
+
+int primeFactorize(int num)
+{
+    if (num <= 1)
+    {
+        return 0;
+    }
+    if (num == 2)
+    {
+        return 1;
+    }
+    if (num % 2 == 0)
+    {
+        return 0;
+    }
+    for (int factor = 3; factor * factor <= num; factor += 2)
+    {
+        if (num % factor == 0)
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
