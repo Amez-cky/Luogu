@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+int sum(int a,int b);
+
+int main(void)
+{
+    int N;
+    scanf("%d", &N);
+    int X = 100, K = 1;
+    int n = sum(X, K);
+    again:
+    if (n > N)
+    {
+        while(1)
+        {
+            X--;
+            n = sum(X, K);
+            if (n == N)
+            {
+                printf("%d\n", X);
+                printf("%d", K);
+                break;
+            }
+            else if (n < N)
+            {
+                K++;
+                goto again;
+            }
+        }
+    }
+    else if (n < N)
+    {
+        while(1)
+        {
+            K++;
+            n = sum(X, K);
+            if (n > N)
+            {
+                goto again;
+            }
+            else if (n == N)
+            {
+                printf("%d\n", X);
+                printf("%d", K);
+                break;
+            }
+        }
+    }
+    else
+    {
+        printf("%d\n", X);
+        printf("%d", K);
+    }
+
+    return 0;
+}
+
+int sum(int a,int b)
+{
+    int c = 364 * a + 1092 * b;
+    return c;
+}
